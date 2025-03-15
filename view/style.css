@@ -1,0 +1,207 @@
+:root {
+    --bgr0: #1D1454;
+    --bgr1: darkslateblue;
+    --bgr2: cornflowerblue;
+    --bgr3: #576ABD;
+    --text: #C8DFFF;/*#A6B1EC;*/
+    --accent: limegreen;/*#CD58A4;*/
+    --select: lawngreen;/*#ED74C3;*/
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, var(--bgr0), var(--bgr1));
+    font-family: Tahoma, sans-serif;
+}
+
+main {
+   /* margin: 0 1em;*/
+    padding: 1em;
+    background-color: white;
+    min-height: 75vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: inherit;
+}
+
+nav ul {
+    color: white;
+    list-style-type: none;
+    display: flex;
+    justify-content: left;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav li a {
+    text-decoration: none;
+    padding: 1em;
+    color: var(--text);
+}
+
+nav li a:visited {
+    color: var(--text);
+}
+
+nav li a:hover {
+    color: white;
+    border-bottom: solid 0.5em var(--select);
+}
+
+.this-page, .this-page:visited {
+    color: var(--select);
+}
+
+header {
+    font-family: Magneto, sans-serif;
+    color: white;
+    padding: 0 2em;
+}
+
+footer {
+    font-family: Georgia, serif;
+    color: var(--text);
+    padding: 0.5em 2em;
+}
+
+/************************************************/
+ul {
+    list-style-type: none;
+}
+
+ol {
+    list-style-type: upper-roman;
+}
+
+li::marker {
+    color: black;
+}
+
+#search {
+    text-align: center;
+}
+
+#search-label {
+    display: block;
+}
+
+#anime-search {
+    margin: 1.5em 0;
+    border: solid 1px var(--bgr3);
+    border-radius: 0.25em;
+    width: 80%;
+    padding: 0.9em;
+}
+
+button {
+    margin: 0.5em 0;
+    font-family: inherit;
+    color: white;
+    padding: 1em;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 0.25em;
+    transition: background-color 0.5s;
+}
+
+button:hover {
+    background-color: var(--select);
+    color: black;
+    cursor: pointer;
+}
+
+main > div {
+    text-align: center;
+}
+
+/********************************************/
+.no-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.anime-list {
+    padding: 0 5em;
+}
+
+.anime-list li {
+    border-radius: 0.25em;
+    padding: 0.5em;
+    margin: 0.5em;
+    background: linear-gradient(90deg, var(--bgr1), var(--bgr3));
+    color: var(--text);
+}
+
+.rus-name:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.eng-name {
+    font-size: 1.1em;
+    font-family: Cambria, serif;
+    font-weight: bold;
+    color: white;
+}
+
+.year {
+    text-decoration: underline 1px;
+}
+
+.episodes-count {
+    font-size: 0.9em;
+}
+
+.description {
+    font-family: Georgia, serif;
+    font-size: 0.9em;
+    padding: 0.5em 0;
+}
+
+.description a {
+    pointer-events: none;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.anime-info {
+    border-top: solid 1px var(--bgr3);
+    display: flex;
+    padding: 1em;
+    margin-top: 0.5em;
+}
+
+.anime-info textarea {
+    min-width: 100%;
+    resize: none;
+    margin: 0.5em 0;
+}
+
+.anime-info input {
+    max-width: 5%;
+    margin: 0.5em 0;
+}
+
+.anime-list-item img {
+    max-width: 15em;
+    object-fit: contain;
+}
+
+.anime-info > div {
+    padding-left: 1em;
+}
+
+.hidden {
+    display: none;
+}

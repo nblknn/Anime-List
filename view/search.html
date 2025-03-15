@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My anime list</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <h1>My anime list</h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Просмотренное</a></li>
+                <li><a href="./planned.html">Запланированное</a></li>
+                <li><a href="./search.html" class="this-page">Поиск</a></li>
+            </ul>
+        </nav>
+        <button class="clear">Очистить списки</button>
+    </header>
+
+    <main>
+        <div id="search">
+        <!--    <label id="search-label" for="anime-search">Поиск аниме по названию</label>-->
+            <input type="search" id="anime-search" placeholder="Поиск аниме по названию...">
+            <button id="search-button">Найти</button>
+        </div>
+
+        <ul class="anime-list search">
+        </ul>
+
+        <script src="index.js"></script>
+        <script>
+            setSearchEvent();
+        </script>
+    </main>
+
+    <footer>
+        <p>(c) nblknn. Поставьте автомат пожалусто</p>
+    </footer>
+</body>
+</html>

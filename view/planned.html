@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My anime list</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <h1>My anime list</h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Просмотренное</a></li>
+                <li><a href="./planned.html" class="this-page">Запланированное</a></li>
+                <li><a href="./search.html">Поиск</a></li>
+            </ul>
+        </nav>
+        <button class="clear">Очистить списки</button>
+    </header>
+
+    <main>
+        <div class="no-items hidden"><p>Здесь пока ничего нет...</p></div>
+        <ol class="anime-list watched">
+
+        </ol>
+        <script src="index.js"></script>
+        <script>
+            showList(false);
+        </script>
+    </main>
+
+    <footer>
+        <p>(c) nblknn. Поставьте автомат пожалусто</p>
+    </footer>
+</body>
+</html>
