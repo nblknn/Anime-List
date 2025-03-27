@@ -1,5 +1,9 @@
 <?php
 
+declare (strict_types = 1);
+
+namespace Model;
+
 class Anime {
     private int $id;
     private string $name;
@@ -8,7 +12,8 @@ class Anime {
     private int $year;
     private string $posterURL;
     private string $description;
-    public function __construct($id, $name, $russianname, $episodes, $year, $posterURL, $description) {
+    public function __construct(int $id, string $name, string $russianname, int $episodes,
+                                int $year, string $posterURL, string $description) {
         $this->id = $id;
         $this->name = $name;
         $this->russianname = $russianname;
@@ -17,46 +22,53 @@ class Anime {
         $this->posterURL = $posterURL;
         $this->description = $description;
     }
-    public function getId() {
+    public function getId(): int {
         return $this->id;
     }
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
-    public function getRussianName() {
+    public function getRussianName(): string {
         return $this->russianname;
     }
-    public function getEpisodes() {
+    public function getEpisodes(): int {
         return $this->episodes;
     }
-    public function getYear() {
+    public function getYear(): int {
         return $this->year;
     }
-    public function getPosterURL() {
+    public function getPosterURL(): string {
         return $this->posterURL;
     }
-    public function getDescription() {
+    public function getDescription(): string {
         return $this->description;
     }
-    public function setId($id) {
+    public function setId(int $id): Anime {
         $this->id = $id;
+        return $this;
     }
-    public function setName($name) {
+    public function setName(string $name): Anime {
         $this->name = $name;
+        return $this;
     }
-    public function setRussianName($russianname) {
+    public function setRussianName(string $russianname): Anime {
         $this->russianname = $russianname;
+        return $this;
     }
-    public function setEpisodes($episodes) {
+    public function setEpisodes(int $episodes): Anime {
         $this->episodes = $episodes;
+        return $this;
     }
-    public function setYear($year) {
+    public function setYear(int $year): Anime {
         $this->year = $year;
+        return $this;
     }
-    public function setPosterURL($posterURL) {
+    public function setPosterURL(string $posterURL): Anime {
         $this->posterURL = $posterURL;
+        return $this;
     }
-    public function setDescription($description) {
+    public function setDescription(string $description): Anime {
         $this->description = $description;
+        return $this;
     }
 }
