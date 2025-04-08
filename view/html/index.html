@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>My anime list</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/view/css/style.css">
 </head>
 <body>
     <header>
         <h1>My anime list</h1>
         <nav>
             <ul>
-                <li><a href="./index.html" class="this-page">Просмотренное</a></li>
-                <li><a href="./planned.html">Запланированное</a></li>
-                <li><a href="./search.html">Поиск</a></li>
+                <li><a href="./" class="this-page">Просмотренное</a></li>
+                <li><a href="/list/planned">Запланированное</a></li>
+                <li><a href="/list/search">Поиск</a></li>
             </ul>
         </nav>
         <button class="clear">Очистить списки</button>
@@ -22,14 +22,12 @@
         <div class="no-items hidden"><div>Здесь пока ничего нет...</div></div>
         <ol class="anime-list watched">
         </ol>
-        <script src="../js/index.js"></script>
+        <script src="/view/js/index.js"></script>
         <script>
             showList(true);
         </script>
     </main>
 
-    <footer>
-        <p>(c) nblknn. Поставьте автомат пожалусто</p>
-    </footer>
+    {{footer}}
 </body>
 </html>

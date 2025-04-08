@@ -68,7 +68,6 @@ header {
 }
 
 footer {
-    font-family: Georgia, serif;
     color: var(--text);
     padding: 0.5em 2em;
 }
