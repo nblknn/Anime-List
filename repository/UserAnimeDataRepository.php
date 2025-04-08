@@ -2,9 +2,7 @@
 
 declare (strict_types = 1);
 
-namespace Repository;
-
-use Model\UserAnimeData;
+require_once __DIR__ . '/../model/UserAnimeData.php';
 
 class UserAnimeDataRepository {
     public function add(UserAnimeData $data) {}

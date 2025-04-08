@@ -2,8 +2,6 @@
 
 declare (strict_types = 1);
 
-namespace Model;
-
 class UserAnimeData {
     private int $animeid;
     private bool $isWatched;

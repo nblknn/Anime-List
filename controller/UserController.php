@@ -2,9 +2,8 @@
 
 declare (strict_types = 1);
 
-namespace Controller;
-
-use Service\UserService;
+require_once __DIR__ . '/../service/UserService.php';
+require_once __DIR__ . '/../TemplateEngine.php';
 
 class UserController {
 

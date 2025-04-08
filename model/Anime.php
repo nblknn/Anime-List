@@ -2,8 +2,6 @@
 
 declare (strict_types = 1);
 
-namespace Model;
-
 class Anime {
     private int $id;
     private string $name;

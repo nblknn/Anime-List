@@ -2,9 +2,7 @@
 
 declare (strict_types = 1);
 
-namespace Repository;
-
-use Model\Anime;
+require_once __DIR__ . '/../model/Anime.php';
 
 class AnimeRepository {
     public function add(Anime $anime) {}
