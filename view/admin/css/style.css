@@ -1,0 +1,140 @@
+:root {
+    --bgr0: #1D1454;
+    --bgr1: darkslateblue;
+    --bgr2: cornflowerblue;
+    --bgr3: #576ABD;
+    --text: #C8DFFF;/*#A6B1EC;*/
+    --accent: limegreen;/*#CD58A4;*/
+    --select: lawngreen;/*#ED74C3;*/
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, var(--bgr0), var(--bgr1));
+    font-family: Tahoma, sans-serif;
+}
+
+main {
+    padding: 1em 6em;
+    background-color: white;
+    min-height: 75vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: inherit;
+}
+
+nav ul {
+    color: white;
+    list-style-type: none;
+    display: flex;
+    justify-content: left;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav li a {
+    text-decoration: none;
+    padding: 1em;
+    color: var(--text);
+}
+
+nav li a:visited {
+    color: var(--text);
+}
+
+nav li a:hover {
+    color: white;
+    border-bottom: solid 0.5em var(--select);
+}
+
+.this-page, .this-page:visited {
+    color: var(--select);
+}
+
+header {
+    color: white;
+    padding: 0 2em;
+}
+
+h1 {
+    font-weight: normal;
+    padding: 0.45em 0;
+    font-size: 1.5em;
+}
+
+footer {
+    color: var(--text);
+    padding: 0.5em 2em;
+}
+
+img {
+    border: 1px var(--bgr0);
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+textarea {
+    width: 100%;
+    min-height: 30em;
+    resize: vertical;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button, .download {
+    font-size: 0.9em;
+    margin: 0.5em 0;
+    font-family: inherit;
+    color: white;
+    padding: 1em;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 0.25em;
+    transition: background-color 0.5s;
+}
+
+button:hover, .download:hover {
+    background-color: var(--select);
+    color: black;
+    cursor: pointer;
+}
+
+.download {
+    text-decoration: none;
+}
+
+main > div {
+    text-align: center;
+}
+
+.dir-list {
+    padding: 0;
+}
+
+.dir-list li {
+    border-radius: 0.25em;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    background: linear-gradient(90deg, var(--bgr1), var(--bgr3));
+    color: var(--text);
+}
+
+.dir-list a:visited, .dir-list a {
+    color: var(--text);
+}
+
+.hidden {
+    display: none;
+}

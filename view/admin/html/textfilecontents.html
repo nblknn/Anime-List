@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tvitir Odminasis</title>
+    <link rel="stylesheet" href="/view/admin/css/style.css">
+</head>
+<body>
+{{adminHeader}}
+<main>
+    <form method="post" enctype="multipart/form-data" id="rename-file-form">
+        <input type="text" id="rename-file-input" name="name" value="{{echo $filename}}">
+        <button type="submit" id="rename-file-button">Переименовать файл</button>
+    </form>
+    <div>
+        <textarea id="file-contents">{{echo $file}}</textarea>
+    </div>
+    <button id="save-changes-button">Сохранить изменения</button>
+    <button id="delete-file-button">Удалить файл</button>
+    <a href="{{echo '/view' . $path}}" download class="download">Скачать файл</a>
+    <script src="/view/admin/js/index.js"></script>
+</main>
+{{footer}}
+</body>
+</html>

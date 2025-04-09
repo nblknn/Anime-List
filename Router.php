@@ -9,9 +9,13 @@ class Router {
         "AdminController" => ["" => "getFileAction",
             "getFile" => "getFileAction",
             "addFile" => "addFileAction",
+            "addDir" => "addDirAction",
             "deleteFile" => "deleteFileAction",
+            "deleteDir" => "deleteDirAction",
             "updateFile" => "updateFileAction",
+            "renameFile" => "renameFileAction",
         ]];
+
     public function Route() : string {
         $uri = parse_url($_SERVER["REQUEST_URI"] ?? "", PHP_URL_PATH);
         $uri = urldecode(trim($uri, '/'));
