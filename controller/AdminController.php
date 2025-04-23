@@ -2,11 +2,12 @@
 
 declare (strict_types = 1);
 
+require_once __DIR__ . '/BaseController.php';
 require_once __DIR__ . '/../service/AdminService.php';
 require_once __DIR__ . '/../model/FileType.php';
 require_once __DIR__ . '/../TemplateEngine.php';
 
-class AdminController {
+class AdminController extends BaseController {
     private const string DIR_TEMPLATE = __DIR__ . '/../view/admin/html/dircontents.html';
     private const string IMAGE_TEMPLATE = __DIR__ . '/../view/admin/html/imagefilecontents.html';
     private const string FILE_TEMPLATE = __DIR__ . '/../view/admin/html/textfilecontents.html';
@@ -25,29 +26,16 @@ class AdminController {
         $path = $this->service->getShortPath($fullPath);
         return match($this->service->getFileType($fullPath)) {
             FileType::Dir => $this->templateEngine->render(self::DIR_TEMPLATE,
-                array("dir" => $this->service->getAllDirFiles($fullPath), "path" => $path . "/", "dirname" => $this->service->getFileName($path))),
+                ["dir" => $this->service->getAllDirFiles($fullPath), "path" => $path . "/", "dirname" => $this->service->getFileName($path)]),
             FileType::Image => $this->templateEngine->render(self::IMAGE_TEMPLATE,
-                array("file" => '/view/' . $path, "path" => $path,"filename" => $this->service->getFileName($path))),
+                ["file" => '/view/' . $path, "path" => $path,"filename" => $this->service->getFileName($path)]),
             FileType::File =>$this->templateEngine->render(self::FILE_TEMPLATE,
-                array("file" => $this->service->getFileContents($fullPath), "path" => $path, "filename" => $this->service->getFileName($path)))
+                ["file" => $this->service->getFileContents($fullPath), "path" => $path, "filename" => $this->service->getFileName($path)])
         };
     }
 
     public function defaultAction(): string {
         return $this->getFileAction();
-    }
-
-    public function handleAction(bool $result, string $errorMessage): string {
-        if ($result) {
-            return json_encode([
-                'success' => true,
-            ]);
-        }
-        http_response_code(400);
-        return json_encode([
-            'success' => false,
-            'error' => $errorMessage,
-        ]);
     }
 
     public function addFileAction(): string {

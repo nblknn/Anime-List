@@ -6,34 +6,19 @@
     <link rel="stylesheet" href="/view/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>My anime list</h1>
-        <nav>
-            <ul>
-                <li><a href="/anime/watched">Просмотренное</a></li>
-                <li><a href="/anime/planned">Запланированное</a></li>
-                <li><a href="/anime/search" class="this-page">Поиск</a></li>
-            </ul>
-        </nav>
-        <button class="clear">Очистить списки</button>
-    </header>
-
+    {{header}}
     <main>
         <div id="search">
-        <!--    <label id="search-label" for="anime-search">Поиск аниме по названию</label>-->
-            <input type="search" id="anime-search" placeholder="Поиск аниме по названию...">
+            <input type="search" id="anime-search" placeholder="Поиск аниме по названию..." value="{{echo $searchValue ?? ''}}">
             <button id="search-button">Найти</button>
         </div>
-
+        {{if ($isSearch)}}
         <ul class="anime-list search">
+            {{animeList}}
         </ul>
-
+        {{endif}}
         <script src="/view/js/index.js"></script>
-        <script>
-            setSearchEvent();
-        </script>
     </main>
-
     {{footer}}
 </body>
 </html>

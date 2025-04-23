@@ -8,16 +8,14 @@ class Anime {
     private string $russianname;
     private int $episodes;
     private int $year;
-    private string $posterURL;
     private string $description;
     public function __construct(int $id, string $name, string $russianname, int $episodes,
-                                int $year, string $posterURL, string $description) {
+                                int $year, string $description) {
         $this->id = $id;
         $this->name = $name;
         $this->russianname = $russianname;
         $this->episodes = $episodes;
         $this->year = $year;
-        $this->posterURL = $posterURL;
         $this->description = $description;
     }
     public function getId(): int {
@@ -34,9 +32,6 @@ class Anime {
     }
     public function getYear(): int {
         return $this->year;
-    }
-    public function getPosterURL(): string {
-        return $this->posterURL;
     }
     public function getDescription(): string {
         return $this->description;
@@ -59,10 +54,6 @@ class Anime {
     }
     public function setYear(int $year): Anime {
         $this->year = $year;
-        return $this;
-    }
-    public function setPosterURL(string $posterURL): Anime {
-        $this->posterURL = $posterURL;
         return $this;
     }
     public function setDescription(string $description): Anime {

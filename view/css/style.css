@@ -166,6 +166,7 @@ main > div {
     font-family: Georgia, serif;
     font-size: 0.9em;
     padding: 0.5em 0;
+    text-align: justify;
 }
 
 .description a {
