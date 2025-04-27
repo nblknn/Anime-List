@@ -3,10 +3,10 @@
 declare (strict_types = 1);
 
 require_once __DIR__ . '/BaseRepository.php';
-require_once __DIR__ . '/../model/Anime.php';
+require_once __DIR__ . '/../model/User.php';
 
-class AnimeRepository extends BaseRepository {
-    private const string TABLE_NAME = 'anime';
+class UserRepository extends BaseRepository {
+    private const string TABLE_NAME = 'user';
 
     public function __construct() {
         $this->dbConnection = EntityManager::getInstance()->getConnection();
@@ -14,12 +14,12 @@ class AnimeRepository extends BaseRepository {
 
     public function add($data): bool {
         return $this->dbConnection->query($this->insertDataToQuery(
-            'INSERT INTO ' . self::TABLE_NAME . ' VALUES ($id, $name, $russianName, $episodes, $year, $description);', $data));
+            'INSERT INTO ' . self::TABLE_NAME . ' VALUES ($id, $firstName, $lastName, $email, $password, $salt, $token, $isVerified);', $data));
     }
 
     public function update($data): bool {
         return $this->dbConnection->query($this->insertDataToQuery(
-            'UPDATE ' . self::TABLE_NAME . ' SET name = $name, russianName = $russianName, episodes = $episodes, year = $year, description = $description WHERE id = $id', $data));
+            'UPDATE ' . self::TABLE_NAME . ' SET firstName = $firstName, lastName = $lastName, email = $email, password = $password, salt = $salt, token = $token, isVerified = $isVerified WHERE id = $id', $data));
     }
 
     public function delete($data): bool {
@@ -29,17 +29,12 @@ class AnimeRepository extends BaseRepository {
     private function getDataFromQueryResult(mysqli_result $queryResult): array {
         $result = [];
         foreach ($queryResult as $row) {
-            $result[] = new Anime((int)$row["id"], $row["name"], $row["russianName"], (int)$row["episodes"], (int)$row["year"], $row["description"]);
+            $result[] = new User((int)$row["id"], $row["firstName"], $row["lastName"], $row["email"], $row["password"], $row["salt"], $row["token"], (bool)$row["isVerified"]);
         }
         return $result;
     }
 
     public function searchByID(int $id): Anime | false {
         return $this->getDataFromQueryResult($this->searchByParams(["id" => $id], self::TABLE_NAME))[0] ?? false;
-    }
-
-    public function searchByName(string $name): array {
-        return $this->getDataFromQueryResult($this->dbConnection->query(
-            "SELECT * FROM " . self::TABLE_NAME . " WHERE name LIKE '%$name%' OR russianName LIKE '%$name%'"));
     }
 }

@@ -42,7 +42,7 @@ class AnimeController extends BaseController {
     }
 
     public function updateListItemAction(): string {
-        return $this->handleAction($this->service->updateAnimeInUserList((int)$_GET["id"], $_POST["isWatched"], $_POST["rating"], $_POST["comment"]),
+        return $this->handleAction($this->service->updateAnimeInUserList((int)$_GET["id"], isset($_POST["isWatched"]), (int)$_POST["rating"], $_POST["comment"]),
             "Ошибка при изменении элемента списка");
     }
 

@@ -1,7 +1,7 @@
 {{if (count($list) > 0)}}
 {{foreach ($list as $item)}}
 <li class="anime-list-item" id="{{echo $item['id']}}">
-    <span class="rus-name">{{echo $item['russianname']}}</span>
+    <span class="rus-name">{{echo $item['russianName']}}</span>
     <div class="anime-info hidden">
         <img src="{{echo $item['posterURL']}}" alt="poster">
         <div>

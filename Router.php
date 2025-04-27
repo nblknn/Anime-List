@@ -2,6 +2,9 @@
 
 declare (strict_types = 1);
 
+require_once __DIR__ . "/controller/AdminController.php";
+require_once __DIR__ . "/controller/AnimeController.php";
+
 class Router {
     public function getControllerName(string $route): string | false {
         $controllerName = ucfirst($route) . "Controller";
@@ -27,7 +30,6 @@ class Router {
         if (!$controllerName) {
             return "404 Not Found";
         }
-        require_once __DIR__ . "/controller/$controllerName.php";
         $controller = new $controllerName();
         $methodName = $this->getMethod($uriParts[1] ?? null, $controller);
         if (!$methodName) {
