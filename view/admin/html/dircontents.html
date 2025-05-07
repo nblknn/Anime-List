@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/view/admin/css/style.css">
 </head>
 <body>
-{{adminHeader}}
+{{tpl adminHeader}}
 <main>
     <form method="post" enctype="multipart/form-data" id="add-file-form">
         <input type="file" id="add-file-input" name="file" accept="image/*,.html,.css,.js,.tpl">
@@ -40,6 +40,6 @@
     {{endif}}
     <script src="/view/admin/js/index.js"></script>
 </main>
-{{footer}}
+{{tpl footer}}
 </body>
 </html>

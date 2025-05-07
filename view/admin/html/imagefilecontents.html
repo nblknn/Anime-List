@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/view/admin/css/style.css">
 </head>
 <body>
-{{adminHeader}}
+{{tpl adminHeader}}
 <main>
     <form method="post" enctype="multipart/form-data" id="rename-file-form">
         <input type="text" id="rename-file-input" name="name" value="{{echo $filename}}">
@@ -19,6 +19,6 @@
     <button id="delete-file-button">Удалить файл</button>
     <script src="/view/admin/js/index.js"></script>
 </main>
-{{footer}}
+{{tpl footer}}
 </body>
 </html>

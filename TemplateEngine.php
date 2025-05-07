@@ -4,16 +4,16 @@ declare (strict_types = 1);
 
 class TemplateEngine {
     private const string TEMP_FILE = 'temp.php';
-    private array $templates = ["header" => __DIR__ . "/view/templates/header.tpl",
-        "footer" => __DIR__ . "/view/templates/footer.tpl",
-        "adminHeader" => __DIR__ . "/view/admin/templates/header.tpl",
-        "animeList" => __DIR__ . "/view/templates/animeList.tpl",];
+    private const string TEMPLATE_DIR = __DIR__ . "/view/templates/";
+    private const string ADMIN_TEMPLATE_DIR = __DIR__ . "/view/admin/templates/";
 
     public function render(string $template, array $data): string {
         $file = file_get_contents($template);
-        foreach ($this->templates as $key => $value) {
-            $file = preg_replace("/\{\{$key}}/", file_get_contents($value), $file);
-        }
+        $file = preg_replace_callback('/\{\{tpl\s+(.*)}}/', function($matches) {
+            if (str_starts_with($matches[1], 'admin'))
+                return file_get_contents(self::ADMIN_TEMPLATE_DIR . lcfirst(substr($matches[1], 5)) . '.tpl');
+            return file_get_contents(self::TEMPLATE_DIR . $matches[1] . '.tpl');
+        }, $file);
         $file = preg_replace('/\{\{foreach\s*\((\$.*?)\)\s*}}/',  '<?php foreach ($1):?>', $file);
         $file = preg_replace('/\{\{endforeach}}/', '<?php endforeach; ?>', $file);
         $file = preg_replace('/\{\{if\s*\((.*?)\)\s*}}/', '<?php if ($1): ?>', $file);
