@@ -32,10 +32,11 @@ abstract class BaseRepository {
     protected function searchByParams(array $params, string $tableName): bool | mysqli_result {
         $paramString = "";
         foreach ($params as $key => $value) {
+            if (is_string($value))
+                $value = "'" . $value . "'";
             $paramString .= $key . "=" . $value . " AND ";
         }
         $paramString = substr($paramString, 0, strlen($paramString) - 5);
-        return $this->dbConnection->query(
-            "SELECT * FROM $tableName WHERE " . $paramString);
+        return $this->dbConnection->query("SELECT * FROM $tableName WHERE " . $paramString);
     }
 }

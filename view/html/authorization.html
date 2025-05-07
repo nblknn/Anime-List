@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="/view/css/style.css">
+    <link rel="stylesheet" href="/view/css/form.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    {{tpl authHeader}}
+    <main>
+        <div>
+            {{if ($page === 'registration')}}
+                {{tpl registrationForm}}
+            {{else}}
+                {{tpl loginForm}}
+            {{endif}}
+        </div>
+    </main>
+    {{tpl footer}}
+    <script src="/view/js/authorization.js"></script>
+</body>
+</html>

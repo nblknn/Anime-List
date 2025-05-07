@@ -34,7 +34,11 @@ class UserRepository extends BaseRepository {
         return $result;
     }
 
-    public function searchByID(int $id): Anime | false {
+    public function searchByID(int $id): User | false {
         return $this->getDataFromQueryResult($this->searchByParams(["id" => $id], self::TABLE_NAME))[0] ?? false;
+    }
+
+    public function searchByEmail(string $email): User | false {
+        return $this->getDataFromQueryResult($this->searchByParams(["email" => $email], self::TABLE_NAME))[0] ?? false;
     }
 }

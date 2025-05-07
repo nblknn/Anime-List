@@ -9,10 +9,10 @@ class User {
     private string $email;
     private string $password;
     private string $salt;
-    private string $token;
+    private ?string $token;
     private bool $isVerified;
 
-    public function __construct(int $id, string $firstName, string $lastName, string $email, string $password, string $salt, string $token, bool $isVerified) {
+    public function __construct(int $id, string $firstName, string $lastName, string $email, string $password, string $salt, ?string $token, bool $isVerified) {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -47,11 +47,11 @@ class User {
         return $this->salt;
     }
 
-    public function getToken(): string {
+    public function getToken(): ?string {
         return $this->token;
     }
 
-    public function isVerified(): bool {
+    public function getIsVerified(): bool {
         return $this->isVerified;
     }
 
@@ -85,7 +85,7 @@ class User {
         return $this;
     }
 
-    public function setToken(string $token): User {
+    public function setToken(?string $token): User {
         $this->token = $token;
         return $this;
     }

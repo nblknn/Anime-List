@@ -4,36 +4,46 @@ declare (strict_types = 1);
 
 require_once __DIR__ . '/BaseController.php';
 require_once __DIR__ . '/../service/AnimeService.php';
+require_once __DIR__ . '/../service/UserService.php';
 require_once __DIR__ . '/../TemplateEngine.php';
+require_once __DIR__ . '/../model/User.php';
 
 class AnimeController extends BaseController {
     private const string LIST_TEMPLATE = __DIR__ . '/../view/html/animeList.html';
     private const string SEARCH_TEMPLATE = __DIR__ . '/../view/html/search.html';
     private AnimeService $service;
     private TemplateEngine $templateEngine;
+    private User $user;
 
     public function __construct() {
-        $this->service = new AnimeService();
+        $userService = new UserService();
+        $user = $userService->checkLogin();
+        if (!$user) {
+            header('Location: /user/login');
+            exit;
+        }
+        $this->user = $user;
+        $this->service = new AnimeService($this->user->getID());
         $this->templateEngine = new TemplateEngine();
     }
 
     public function plannedAction(): string {
         return $this->templateEngine->render(self::LIST_TEMPLATE,
-            ["list" => $this->service->getUserAnimeList(false), "isSearch" => false, "page" => "planned"]);
+            ["list" => $this->service->getUserAnimeList(false), "isSearch" => false, "page" => "planned", "user" => $this->user]);
     }
 
     public function watchedAction(): string {
         return $this->templateEngine->render(self::LIST_TEMPLATE,
-            ["list" => $this->service->getUserAnimeList(true), "isSearch" => false, "page" => "watched"]);
+            ["list" => $this->service->getUserAnimeList(true), "isSearch" => false, "page" => "watched", "user" => $this->user]);
     }
 
     public function searchAction(): string {
         if (isset($_GET["name"]))
             return $this->templateEngine->render(self::SEARCH_TEMPLATE,
-                ["isSearch" => true, "searchValue" => $_GET["name"], "list" => $this->service->searchAnimeByName($_GET["name"]), "page" => "search"]);
+                ["isSearch" => true, "searchValue" => $_GET["name"], "list" => $this->service->searchAnimeByName($_GET["name"]), "page" => "search", "user" => $this->user]);
         else
             return $this->templateEngine->render(self::SEARCH_TEMPLATE,
-                ["isSearch" => false, "page" => "search"]);
+                ["isSearch" => false, "page" => "search", "user" => $this->user]);
     }
 
     public function addListItemAction(): string {
@@ -52,6 +62,7 @@ class AnimeController extends BaseController {
     }
 
     public function defaultAction(): string {
+        header("Location: /anime/watched");
         return $this->watchedAction();
     }
 }

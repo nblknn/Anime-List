@@ -1,0 +1,9 @@
+:root {
+    --bgr0: #1D1454;
+    --bgr1: darkslateblue;
+    --bgr2: cornflowerblue;
+    --bgr3: #576ABD;
+    --text: #C8DFFF;/*#A6B1EC;*/
+    --accent: limegreen;/*#CD58A4;*/
+    --select: lawngreen;/*#ED74C3;*/
+}

@@ -1,0 +1,46 @@
+@import "./variables.css";
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(90deg, var(--bgr1), var(--bgr3));;
+}
+
+main > div {
+    background: white;
+    padding: 20px;
+    border-radius: 0.25em;
+}
+
+h2 {
+    font-weight: normal;
+    margin: 0 0 10px 0;
+}
+
+form {
+    border-top: solid 1px var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+form div {
+    margin: 5px 0;
+}
+
+input {
+    padding: 10px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], button {
+    width: 250px;
+}
+
+button {
+    padding: 20px;
+    font-size: 16px;
+}

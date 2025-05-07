@@ -4,10 +4,11 @@ declare (strict_types = 1);
 
 require_once __DIR__ . "/controller/AdminController.php";
 require_once __DIR__ . "/controller/AnimeController.php";
+require_once __DIR__ . "/controller/UserController.php";
 
 class Router {
     public function getControllerName(string $route): string | false {
-        $controllerName = ucfirst($route) . "Controller";
+        $controllerName = $route === "" ? "AnimeController" : ucfirst($route) . "Controller";
         if (file_exists(__DIR__ . "/controller/$controllerName.php")) {
             return $controllerName;
         }
@@ -28,11 +29,13 @@ class Router {
         $uriParts = explode('/', $uri);
         $controllerName = $this->getControllerName($uriParts[0]);
         if (!$controllerName) {
+            http_response_code(404);
             return "404 Not Found";
         }
         $controller = new $controllerName();
         $methodName = $this->getMethod($uriParts[1] ?? null, $controller);
         if (!$methodName) {
+            http_response_code(404);
             return "404 Not Found";
         }
         return $controller->$methodName();

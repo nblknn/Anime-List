@@ -11,11 +11,12 @@ class AnimeService {
     private const string IMAGE_DIR = '/view/images';
     private AnimeRepository $animeRepository;
     private UserAnimeDataRepository $userAnimeDataRepository;
-    private int $userID = 1;
+    private int $userID;
 
-    public function __construct() {
+    public function __construct(int $userID) {
         $this->animeRepository = new AnimeRepository();
         $this->userAnimeDataRepository = new UserAnimeDataRepository();
+        $this->userID = $userID;
     }
 
     public function getPosterURL(int $animeID): string {

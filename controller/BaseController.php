@@ -7,10 +7,10 @@ class BaseController {
                 'success' => true,
             ]);
         }
-        http_response_code(400);
+        http_response_code(500);
         return json_encode([
             'success' => false,
-            'error' => $errorMessage,
+            'message' => $errorMessage,
         ]);
     }
 }

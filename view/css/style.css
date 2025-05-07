@@ -1,12 +1,4 @@
-:root {
-    --bgr0: #1D1454;
-    --bgr1: darkslateblue;
-    --bgr2: cornflowerblue;
-    --bgr3: #576ABD;
-    --text: #C8DFFF;/*#A6B1EC;*/
-    --accent: limegreen;/*#CD58A4;*/
-    --select: lawngreen;/*#ED74C3;*/
-}
+@import "./variables.css";
 
 body {
     margin: 0;
@@ -67,6 +59,28 @@ header {
     padding: 0 2em;
 }
 
+.user-options {
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background: var(--bgr1);
+    z-index: 1;
+}
+
+.user-options div {
+    margin-top: 10px;
+    min-height: 40px;
+}
+
+.user:hover ~ .user-options {
+    display: block;
+}
+
+.user-options:hover {
+    display: block;
+}
+
 footer {
     color: var(--text);
     padding: 0.5em 2em;
@@ -123,6 +137,7 @@ main > div {
 }
 
 /********************************************/
+
 .no-items {
     display: flex;
     justify-content: center;
