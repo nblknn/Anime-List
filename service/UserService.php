@@ -1,22 +1,35 @@
 <?php
 
+declare (strict_types = 1);
+
 require_once __DIR__ . '/../model/User.php';
 require_once __DIR__ . '/../repository/UserRepository.php';
+require_once __DIR__ . '/MailService.php';
 
 class UserService {
     private UserRepository $userRepository;
+    private MailService $mailService;
 
     public function __construct() {
         $this->userRepository = new UserRepository();
+        $this->mailService = new MailService();
+    }
+
+    public function getCurrentUser(): User | false {
+        if ($this->checkLogin())
+            return $this->userRepository->searchByID($_SESSION["userID"]);
+        else
+            return false;
     }
 
     public function registerUser(string $firstName, string $lastName, string $email, string $password, string $salt): bool {
         $password = hash("sha256", $password . $salt);
         if ($this->userRepository->searchByEmail($email) !== false)
             return false;
-        if (!$this->userRepository->add(new User(0, $firstName, $lastName, $email, $password, $salt, null, false)))
+        if (!$this->userRepository->add(new User($firstName, $lastName, $email, $password, $salt)))
             return false;
         $this->startSession($email);
+        $this->startVerification();
         return true;
     }
 
@@ -34,6 +47,7 @@ class UserService {
             setcookie("email", $email, time() + (60 * 60 * 24 * 30), "/");
         }
         $this->startSession($email);
+        $this->mailService->sendLoginMessage($user);
         return true;
     }
 
@@ -42,7 +56,7 @@ class UserService {
         $_SESSION["userID"] = $this->userRepository->searchByEmail($email)->getID();
     }
 
-    public function checkLogin(): User | false {
+    public function checkLogin(): bool {
         if (!isset($_COOKIE[session_name()]) && isset($_COOKIE["token"]) && isset($_COOKIE["email"])) {
             $token = $_COOKIE["token"];
             $user = $this->userRepository->searchByEmail($_COOKIE["email"]);
@@ -50,15 +64,18 @@ class UserService {
                 return false;
             $this->startSession($_COOKIE["email"]);
         }
-        else if (isset($_COOKIE[session_name()]))
-            session_start();
+        else if (isset($_COOKIE[session_name()])) {
+            if (session_status() != PHP_SESSION_ACTIVE)
+                session_start();
+        }
         else
             return false;
-        return $this->userRepository->searchByID($_SESSION["userID"]);
+        return true;
     }
 
     public function logoutUser(): bool {
-        session_start();
+        if (session_status() != PHP_SESSION_ACTIVE)
+            session_start();
         $params = session_get_cookie_params();
         setcookie(session_name(), '', 0, $params['path'], $params['domain'], $params['secure'], isset($params['httponly']));
         setcookie("email", '', time() - 100, "/");
@@ -66,5 +83,21 @@ class UserService {
         session_destroy();
         session_write_close();
         return true;
+    }
+
+    public function startVerification(): bool {
+        if (!$this->checkLogin())
+            return false;
+        $verificationToken = bin2hex(random_bytes(32));
+        $_SESSION["verificationToken"] = $verificationToken;
+        return $this->mailService->sendVerificationMessage($this->getCurrentUser(), "http://127.0.0.1/user/confirmVerification?token=" . $verificationToken);
+    }
+
+    public function verifyUser(string $verificationToken): bool {
+        if (!$this->checkLogin())
+            return false;
+        if (isset($_SESSION["verificationToken"]) && $_SESSION["verificationToken"] === $verificationToken && !$this->getCurrentUser()->getIsVerified())
+            return $this->userRepository->update($this->getCurrentUser()->setIsVerified(true));
+        return false;
     }
 }

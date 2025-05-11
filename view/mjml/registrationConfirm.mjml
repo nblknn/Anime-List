@@ -1,0 +1,40 @@
+<mjml>
+    <mj-head>
+        <mj-title>My anime list: Подтверждение регистрации</mj-title>
+    </mj-head>
+    <mj-body>
+        <mj-section padding="15px 0" background-color="#1D1454">
+            <mj-column>
+                <mj-text align="center" font-size="24px" color="white" font-weight="700" font-family="Magneto, sans-serif">
+                    My anime list
+                </mj-text>
+            </mj-column>
+        </mj-section>
+
+        <mj-section padding="20px" background-color="#ffffff">
+            <mj-column>
+                <mj-text font-size="18px" font-weight="700" color="#343a40" font-family="Roboto, sans-serif" align="center">
+                    Подтверждение регистрации
+                </mj-text>
+                <mj-text color="#495057" font-family="Roboto, sans-serif" padding="10px 0" align="center">
+                    Добро пожаловать на Anime List, {{echo $username}}!
+                </mj-text>
+                <mj-text color="#495057" font-family="Roboto, sans-serif" padding="10px 0" align="center">
+                    Для подтверждения Вашей электронной почты нажмите на кнопку ниже.
+                </mj-text>
+
+                <mj-button href="{{echo $link}}" background-color="limegreen" color="#ffffff" font-family="Roboto, sans-serif" padding="15px 30px" border-radius="4px">
+                    Подтвердить регистрацию
+                </mj-button>
+            </mj-column>
+        </mj-section>
+
+        <mj-section padding="20px 0" background-color="#1D1454">
+            <mj-column>
+                <mj-text align="center" color="#C8DFFF" font-size="12px" font-family="Roboto, sans-serif">
+                    © nblknn
+                </mj-text>
+            </mj-column>
+        </mj-section>
+    </mj-body>
+</mjml>

@@ -4,9 +4,9 @@ declare (strict_types = 1);
 
 require_once __DIR__ . '/BaseController.php';
 require_once __DIR__ . '/../service/AnimeService.php';
-require_once __DIR__ . '/../service/UserService.php';
 require_once __DIR__ . '/../TemplateEngine.php';
 require_once __DIR__ . '/../model/User.php';
+require_once __DIR__ . '/../service/UserService.php';
 
 class AnimeController extends BaseController {
     private const string LIST_TEMPLATE = __DIR__ . '/../view/html/animeList.html';
@@ -16,13 +16,7 @@ class AnimeController extends BaseController {
     private User $user;
 
     public function __construct() {
-        $userService = new UserService();
-        $user = $userService->checkLogin();
-        if (!$user) {
-            header('Location: /user/login');
-            exit;
-        }
-        $this->user = $user;
+        $this->user = (new UserService())->getCurrentUser();
         $this->service = new AnimeService($this->user->getID());
         $this->templateEngine = new TemplateEngine();
     }

@@ -29,7 +29,7 @@ class UserRepository extends BaseRepository {
     private function getDataFromQueryResult(mysqli_result $queryResult): array {
         $result = [];
         foreach ($queryResult as $row) {
-            $result[] = new User((int)$row["id"], $row["firstName"], $row["lastName"], $row["email"], $row["password"], $row["salt"], $row["token"], (bool)$row["isVerified"]);
+            $result[] = new User($row["firstName"], $row["lastName"], $row["email"], $row["password"], $row["salt"], $row["token"], (bool)$row["isVerified"], (int)$row["id"]);
         }
         return $result;
     }

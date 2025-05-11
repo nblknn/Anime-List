@@ -5,6 +5,7 @@ declare (strict_types = 1);
 require_once __DIR__ . "/controller/AdminController.php";
 require_once __DIR__ . "/controller/AnimeController.php";
 require_once __DIR__ . "/controller/UserController.php";
+require_once __DIR__ . "/service/UserService.php";
 
 class Router {
     public function getControllerName(string $route): string | false {
@@ -31,6 +32,13 @@ class Router {
         if (!$controllerName) {
             http_response_code(404);
             return "404 Not Found";
+        }
+        if ($controllerName === "AnimeController") {
+            $userService = new UserService();
+            if (!$userService->checkLogin()) {
+                header('Location: /user/login');
+                exit;
+            }
         }
         $controller = new $controllerName();
         $methodName = $this->getMethod($uriParts[1] ?? null, $controller);

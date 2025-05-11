@@ -48,7 +48,7 @@ document.querySelector("#login-form")?.addEventListener("submit", async function
     let password = await getHash(document.querySelector("#password-input").value);
     let formData = new FormData(this);
     formData.set("password", password);
-    formData.set("rememberMe", document.querySelector("#remember-me-input").checked);
+    formData.set("rememberMe", document.querySelector("#remember-me-input").checked ? "1" : "0");
     fetchAndProcess("/user/confirmLogin/", {method: "POST", body: formData},
         function () {window.location.href = "/anime";});
 });

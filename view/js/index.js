@@ -59,3 +59,10 @@ document.querySelector("#search-button")?.addEventListener("click", function () 
         window.location = getUri("/anime/search", "name", name);
     }
 });
+
+document.querySelector("#verify")?.addEventListener("click", function(e) {
+    e.preventDefault();
+    fetchAndProcess(document.querySelector("#verify").href, {method: "GET"}, function() {
+        alert("Письмо с ссылкой для подтверждения отправлено.");
+    });
+})

@@ -1,0 +1,66 @@
+<mjml>
+  <mj-head>
+    <mj-title>My anime list: Уведомление о входе</mj-title>
+    <mj-style>
+      .table-label {
+        padding: 5px 10px 5px 0;
+        color: #6c757d;
+        font-family: Roboto, sans-serif;
+        text-align: center;
+        min-width: 60px;
+      }
+      .table-value {
+        padding: 5px 0;
+        font-family: Roboto, sans-serif;
+        text-align: center;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body>
+    <mj-section padding="15px 0" background-color="#1D1454">
+      <mj-column>
+        <mj-text align="center" font-size="24px" color="white" font-weight="700" font-family="Magneto, sans-serif">
+          My anime list
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="20px" background-color="#ffffff">
+      <mj-column>
+        <mj-text font-size="18px" font-weight="700" color="#343a40" font-family="Roboto, sans-serif" align="center">
+          Вход в Ваш аккаунт
+        </mj-text>
+        <mj-text color="#495057" font-family="Roboto, sans-serif" padding="10px 0 20px" align="center">
+          Кто-то вошел в Ваш аккаунт.
+        </mj-text>
+
+        <mj-table>
+          <tr>
+            <td class="table-label">Время:</td>
+            <td class="table-value">{{echo $time}}</td>
+          </tr>
+          <tr>
+            <td class="table-label">Устройство:</td>
+            <td class="table-value">{{echo $device}}</td>
+          </tr>
+          <tr>
+            <td class="table-label">IP-адрес:</td>
+            <td class="table-value">{{echo $ip}}</td>
+          </tr>
+        </mj-table>
+
+        <mj-button href="http://127.0.0.1/anime/" background-color="limegreen" color="#ffffff" font-family="Roboto, sans-serif" padding="15px 30px" border-radius="4px">
+          Перейти на сайт
+        </mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="20px 0" background-color="#1D1454">
+      <mj-column>
+        <mj-text align="center" color="#C8DFFF" font-size="12px" font-family="Roboto, sans-serif">
+          © nblknn
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

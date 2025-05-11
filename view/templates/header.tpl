@@ -8,7 +8,7 @@
             <li class="user"><a>{{echo $user->getFirstName() . ' ' . $user->getLastName()}}</a></li>
             <li class="user-options">
                 {{if (!$user->getIsVerified())}}
-                <div><a href="/user/verify">Подтвердить почту</a></div>
+                <div><a href="/user/verify" id="verify">Подтвердить почту</a></div>
                 {{endif}}
                 <div><a href="/user/logout">Выйти</a></div>
             </li>

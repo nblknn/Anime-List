@@ -12,7 +12,7 @@ class User {
     private ?string $token;
     private bool $isVerified;
 
-    public function __construct(int $id, string $firstName, string $lastName, string $email, string $password, string $salt, ?string $token, bool $isVerified) {
+    public function __construct(string $firstName, string $lastName, string $email, string $password, string $salt, ?string $token = null, bool $isVerified = false, int $id = 0) {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
